@@ -57,7 +57,7 @@ export function HeroSlider() {
   };
 
   return (
-    <div className="relative h-[450px] md:h-[550px] w-full overflow-hidden bg-secondary/10">
+    <div className="relative h-[400px] md:h-[480px] w-full overflow-hidden bg-secondary/10 mt-16">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -68,14 +68,14 @@ export function HeroSlider() {
           className="absolute inset-0"
         >
           {/* Background Image */}
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[8s] scale-105"
             style={{ backgroundImage: `url(${slides[current].image})` }}
           />
-          
+
           {/* Overlay - Brighter, more compact wash */}
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent" />
-          
+
           {/* Content - More compact alignment */}
           <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-8">
             <div className="max-w-xl">
@@ -94,8 +94,8 @@ export function HeroSlider() {
                   {slides[current].description}
                 </p>
                 <div className="flex gap-3">
-                  <Button 
-                    size="default" 
+                  <Button
+                    size="default"
                     className="bg-primary hover:bg-primary/90 text-white px-6 h-10 text-base shadow-md shadow-primary/20 rounded-full"
                     onClick={() => scrollTo(slides[current].target)}
                   >
@@ -110,26 +110,25 @@ export function HeroSlider() {
 
       {/* Navigation Controls - More compact */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
-        <button 
+        <button
           onClick={prev}
           className="p-1.5 rounded-full border border-border/40 bg-background/40 backdrop-blur-sm hover:bg-background transition-colors text-muted-foreground hover:text-foreground"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
-        
+
         <div className="flex gap-1.5">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                current === i ? "w-6 bg-primary" : "w-1.5 bg-primary/20"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${current === i ? "w-6 bg-primary" : "w-1.5 bg-primary/20"
+                }`}
             />
           ))}
         </div>
 
-        <button 
+        <button
           onClick={next}
           className="p-1.5 rounded-full border border-border/40 bg-background/40 backdrop-blur-sm hover:bg-background transition-colors text-muted-foreground hover:text-foreground"
         >

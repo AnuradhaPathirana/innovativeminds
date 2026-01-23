@@ -95,11 +95,11 @@ export function Footer() {
                                             <span className="line-clamp-1 flex-1 group-hover:text-primary">
                                                 {program.title}
                                             </span>
-                                            {program.enquiryCount > 0 && (
+                                            {/* {program.enquiryCount > 0 && (
                                                 <span className="ml-2 px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-full">
                                                     {program.enquiryCount}
                                                 </span>
-                                            )}
+                                            )} */}
                                         </a>
                                     </li>
                                 ))
