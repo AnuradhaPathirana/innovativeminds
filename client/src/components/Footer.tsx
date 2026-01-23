@@ -98,7 +98,7 @@ export function Footer() {
                                             {/* {program.enquiryCount > 0 && (
                                                 <span className="ml-2 px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-full">
                                                     {program.enquiryCount}
-                                                </span>
+                                                </span> 
                                             )} */}
                                         </a>
                                     </li>
