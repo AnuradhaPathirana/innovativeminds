@@ -45,7 +45,7 @@ export function Navigation() {
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center gap-2">
             <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-              <div className="h-10 w-10 overflow-hidden rounded-lg border border-border/40 bg-white p-0.5">
+              <div className="overflow-hidden rounded-lg border border-border/40 bg-white p-0.5" style={{ width: '3.3rem', height: '3.3rem' }}>
                 <img src={logoPng} alt="IIM Logo" className="h-full w-full object-contain" />
               </div>
               <div className="flex flex-col">
