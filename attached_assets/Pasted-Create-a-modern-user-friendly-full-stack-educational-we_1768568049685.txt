@@ -1,0 +1,176 @@
+Create a modern, user-friendly, full-stack educational website for
+Institute of Innovative Minds – Virtual Campus (IIM) using the provided logo.
+
+Brand & Design Direction
+
+Use the Innovative Minds logo as the primary brand reference
+
+Color theme:
+
+Black / dark background
+
+Green accents (matching logo)
+
+White text for clarity
+
+Modern, clean, professional, and friendly
+
+Education + innovation + trust
+
+Target Users
+
+Sri Lanka–based students, job seekers, entrepreneurs, freelancers
+
+Simple UX for non-technical users
+
+Mobile-first responsive design
+
+Website Purpose
+
+Promote certificate courses
+
+Collect enquiries professionally
+
+Send enquiry emails automatically
+
+Allow admin to view enquiries in backend
+
+Navigation
+
+Home | Programs | How It Works | About | Contact / Enquire
+
+Hero Section
+
+Headline:
+Practical Skills for Modern Work & Entrepreneurship
+
+Sub-text:
+Institute of Innovative Minds is a Sri Lanka-wide Virtual Campus delivering practical certificate programs for people who want to build a career, start a business, or support local and overseas clients remotely.
+
+CTA Buttons:
+
+View Programs
+
+Enquire / Apply
+
+Programs Section (Cards Layout)
+
+Create attractive program cards with icons:
+
+Certificate in Virtual Assistant & Remote Support Professional
+
+Certificate in Virtual Business Manager
+
+Certificate in Practical AI Tools for Small Business
+
+Certificate in Digital Business Entrepreneurship
+
+Certificate in E-commerce Entrepreneurship
+
+Certificate in Office Administration and Ethics
+
+Certificate in Entrepreneurial Skill Development (Sinhala Medium)
+
+Each card should include:
+
+Short benefit-focused description
+
+“Enquire / Apply” button
+
+How It Works
+
+Display a step-by-step visual flow:
+
+Choose a program
+
+Register online
+
+Attend live virtual sessions
+
+Complete weekly practical work
+
+Submit portfolio
+
+Receive certificate
+
+Why Choose Us
+
+Practical learning (not theory)
+
+Modern tools & systems
+
+Portfolio-based outcomes
+
+Learn to earn locally & internationally
+
+About Section
+
+Present IIM as a Virtual Campus focused on:
+
+Real skills
+
+Professional standards
+
+Confidence to work, earn, or run a business
+
+Contact / Enquiry System (IMPORTANT)
+
+Create a professional enquiry form with:
+
+Full Name
+
+Email
+
+Phone Number (Sri Lanka)
+
+Select Program
+
+Message
+
+On submit:
+
+Save enquiry to database
+
+Send automatic email to info@innovativeminds.lk
+
+Show success confirmation to user
+
+Backend Requirements
+
+Node.js + Express backend
+
+Database (MySQL or MongoDB)
+
+Secure API endpoints
+
+Admin authentication
+
+Admin Dashboard
+
+Login-protected admin panel
+
+View all enquiries
+
+See date, program, name, phone, email
+
+Mark enquiries as contacted
+
+Clean table UI
+
+Footer
+
+© Institute of Innovative Minds | Virtual Campus | All Rights Reserved
+
+Output Required
+
+Full frontend UI (responsive)
+
+Backend API
+
+Database schema
+
+Email sending logic
+
+Admin dashboard
+
+Production-ready, clean code

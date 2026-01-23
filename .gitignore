@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+
+# Editor directories and files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/
+
+# Replit
+.replit
+replit.md
+.config/
+.local/
+
+# Temporary files
+*.tmp
+*.temp
+data/
+
+# Database backups
+*.sql.bak
+*.db.bak
+
+# Archives
+Education-Platform.zip
+*.zip
+*.rar
+*.7z
+
+# Cache
+.cache/
+.npm/
+.eslintcache
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
