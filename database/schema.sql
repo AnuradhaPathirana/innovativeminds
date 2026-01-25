@@ -37,7 +37,7 @@ CREATE TABLE admins (
 -- Insert default admin account
 -- Username: admin | Password: admin123
 INSERT INTO admins (username, password, name, email) VALUES
-('admin', 'admin123', 'Administrator', 'admin@example.com');
+('admin', '$2b$10$OHIrMhsYAj1KTMNNVY9XqeApQBVrcVOsptMMT0TNq5p68b0U/aLyq', 'Administrator', 'admin@example.com');
 
 -- ================================================
 -- Table: programs (Course Modules)
@@ -48,6 +48,7 @@ CREATE TABLE programs (
     title VARCHAR(200) NOT NULL,
     description TEXT NOT NULL,
     icon VARCHAR(50) NOT NULL DEFAULT 'Laptop',
+    image VARCHAR(255) DEFAULT NULL,
     features JSON NOT NULL,
     duration VARCHAR(50),
     is_active BOOLEAN DEFAULT TRUE,

@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise';
+import bcrypt from 'bcryptjs';
 
 // MySQL Connection Configuration
 const dbConfig = {
@@ -39,11 +40,37 @@ export const adminQueries = {
     },
 
     validateCredentials: async (username: string, password: string) => {
+        // Get user by username first
         const [rows] = await pool.execute(
-            'SELECT * FROM admins WHERE username = ? AND password = ?',
-            [username, password]
+            'SELECT * FROM admins WHERE username = ?',
+            [username]
         );
-        return (rows as any[])[0];
+        const admin = (rows as any[])[0];
+
+        if (!admin) return null;
+
+        // Check if password matches (bcrypt or plain text fallback)
+        const isHashed = admin.password.startsWith('$2');
+        let isValid = false;
+
+        if (isHashed) {
+            isValid = await bcrypt.compare(password, admin.password);
+        } else if (admin.password === password) {
+            // Plain text match - migrate to hash
+            isValid = true;
+            try {
+                const hashedPassword = await bcrypt.hash(password, 10);
+                await pool.execute(
+                    'UPDATE admins SET password = ? WHERE id = ?',
+                    [hashedPassword, admin.id]
+                );
+                console.log(`[AUTH] Migrated password for admin ${username} to hash`);
+            } catch (err) {
+                console.error('[AUTH] Failed to migrate password:', err);
+            }
+        }
+
+        return isValid ? admin : null;
     }
 };
 

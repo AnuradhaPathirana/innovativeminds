@@ -105,14 +105,14 @@ export default function LoginPage() {
                     </Button>
                 </form>
 
-                <div className="pt-4 border-t border-slate-700">
+                {/* <div className="pt-4 border-t border-slate-700">
                     <div className="text-center space-y-1">
                         <p className="text-xs text-slate-400">Default Credentials:</p>
                         <p className="text-xs text-slate-500 font-mono">
                             Username: <span className="text-slate-300">admin</span> | Password: <span className="text-slate-300">admin123</span>
                         </p>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="text-center">
                     <Button
