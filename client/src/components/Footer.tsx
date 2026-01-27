@@ -193,7 +193,7 @@ export function Footer() {
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         {/* Copyright */}
                         <div className="text-slate-500 text-sm">
-                            © 2026 innovativeminds. All rights reserved.
+                            © 2026 Institute of Innovative Minds | Virtual Campus | All Rights Reserved.
                         </div>
 
                         {/* Links */}
