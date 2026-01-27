@@ -122,7 +122,7 @@ export default function ModulesPage() {
             features: Array.isArray(program.features) ? program.features.join(", ") : "",
             duration: program.duration || "",
             delivery_mode: program.delivery_mode || "Online",
-            for_whom: Array.isArray(program.for_whom) ? program.for_whom.join(", ") : "",
+            for_whom: Array.isArray(program.for_whom) ? program.for_whom.join("\n") : "",
             display_order: program.display_order,
         });
         setSelectedFile(null);
@@ -189,7 +189,7 @@ export default function ModulesPage() {
                 .filter(f => f.length > 0);
 
             const forWhomArray = formData.for_whom
-                .split(",")
+                .split("\n")
                 .map(f => f.trim())
                 .filter(f => f.length > 0);
 
@@ -425,14 +425,14 @@ export default function ModulesPage() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-medium text-slate-200">For Whom (comma separated)</label>
-                            <Input
+                            <label className="text-sm font-medium text-slate-200">For Whom</label>
+                            <Textarea
                                 value={formData.for_whom}
                                 onChange={(e) => setFormData({ ...formData, for_whom: e.target.value })}
-                                className="bg-slate-900 border-slate-700 text-white"
-                                placeholder="School Leavers, Undergraduates, Fresh Graduates, Career Switchers"
+                                className="bg-slate-900 border-slate-700 text-white min-h-[100px]"
+                                placeholder="School Leavers&#10;Undergraduates&#10;Fresh Graduates&#10;Career Switchers"
                             />
-                            <p className="text-xs text-slate-500">Target audience for this program</p>
+                            <p className="text-xs text-slate-500">Enter each target audience on a new line. Each line will be displayed as a badge.</p>
                         </div>
 
                         <div className="space-y-2">
