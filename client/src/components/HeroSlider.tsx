@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import slideRemoteWork from "@assets/stock_images/remote_work_girl.png";
-import slide2 from "@assets/stock_images/online_learning_stud_8b64d313.jpg";
+import slideVirtualClassroom from "@assets/stock_images/virtual_classroom_instructor.png";
 import slide3 from "@assets/stock_images/young_entrepreneurs__0f08b7cc.jpg";
-import slide4 from "@assets/stock_images/digital_professional_a6e74f03.jpg";
+import slideDigitalEconomy from "@assets/stock_images/digital_economy_handshake.png";
 import slideInstitute from "@assets/stock_images/institute_building.png";
 
 const slides = [
@@ -33,13 +33,15 @@ const slides = [
     bgSize: "cover"
   },
   {
-    image: slide2,
+    image: slideVirtualClassroom,
     span: "IIM Sri Lanka Virtual Campus",
     title: "Virtual Classrooms",
     highlightWord: "Virtual",
     description: "Experience modern education with live sessions and practical portfolio work.",
     cta: "Explore Programs",
-    target: "programs"
+    target: "programs",
+    bgPosition: "right center",
+    bgSize: "cover"
   },
   {
     image: slide3,
@@ -51,13 +53,15 @@ const slides = [
     target: "programs"
   },
   {
-    image: slide4,
+    image: slideDigitalEconomy,
     span: "IIM Sri Lanka Virtual Campus",
     title: "Join the Digital Economy",
     highlightWord: "Digital",
     description: "Bridge the gap between education and modern professional work.",
     cta: "Explore Programs",
-    target: "programs"
+    target: "programs",
+    bgPosition: "right center",
+    bgSize: "cover"
   }
 ];
 
