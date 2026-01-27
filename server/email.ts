@@ -2,54 +2,68 @@ import nodemailer from 'nodemailer';
 
 // Email configuration
 const EMAIL_CONFIG = {
-    recipient: 'ansp345@gmail.com',
-    from: process.env.EMAIL_FROM || 'noreply@innovativeminds.lk',
+  recipient: 'info@innovativeminds.lk',
+  from: process.env.EMAIL_FROM || 'noreply@innovativeminds.lk',
 };
+
+// Log SMTP configuration on startup (hide password)
+console.log('📧 Email Configuration:');
+console.log('   SMTP_HOST:', process.env.SMTP_HOST || '(not set - dev mode)');
+console.log('   SMTP_PORT:', process.env.SMTP_PORT || '(not set)');
+console.log('   SMTP_SECURE:', process.env.SMTP_SECURE || '(not set)');
+console.log('   SMTP_USER:', process.env.SMTP_USER || '(not set)');
+console.log('   EMAIL_FROM:', EMAIL_CONFIG.from);
+console.log('   RECIPIENT:', EMAIL_CONFIG.recipient);
 
 // Create transporter
 // Note: You'll need to configure SMTP settings in environment variables
 const createTransporter = () => {
-    // For development, you can use Gmail SMTP or a service like Mailtrap
-    // For production, use a proper SMTP service
+  // For development, you can use Gmail SMTP or a service like Mailtrap
+  // For production, use a proper SMTP service
 
-    if (process.env.SMTP_HOST) {
-        // Production SMTP configuration
-        return nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: parseInt(process.env.SMTP_PORT || '587'),
-            secure: process.env.SMTP_SECURE === 'true',
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS,
-            },
-        });
-    } else {
-        // Development: Log emails to console instead of sending
-        return nodemailer.createTransport({
-            streamTransport: true,
-            newline: 'unix',
-            buffer: true,
-        });
-    }
+  if (process.env.SMTP_HOST) {
+    // Production SMTP configuration
+    const config = {
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+      debug: true, // Enable debug mode
+      logger: true, // Log to console
+    };
+    console.log('📧 Using SMTP transport:', config.host, 'port:', config.port, 'secure:', config.secure);
+    return nodemailer.createTransport(config);
+  } else {
+    // Development: Log emails to console instead of sending
+    console.log('📧 Development mode - emails will be logged to console');
+    return nodemailer.createTransport({
+      streamTransport: true,
+      newline: 'unix',
+      buffer: true,
+    });
+  }
 };
 
 interface EnquiryData {
-    name: string;
-    email: string;
-    phone: string;
-    program: string;
-    message?: string;
+  name: string;
+  email: string;
+  phone: string;
+  program: string;
+  message?: string;
 }
 
 export async function sendEnquiryNotification(enquiry: EnquiryData): Promise<boolean> {
-    try {
-        const transporter = createTransporter();
+  try {
+    const transporter = createTransporter();
 
-        const mailOptions = {
-            from: EMAIL_CONFIG.from,
-            to: EMAIL_CONFIG.recipient,
-            subject: `New Enquiry: ${enquiry.program}`,
-            html: `
+    const mailOptions = {
+      from: EMAIL_CONFIG.from,
+      to: EMAIL_CONFIG.recipient,
+      subject: `New Enquiry: ${enquiry.program}`,
+      html: `
         <!DOCTYPE html>
         <html>
         <head>
@@ -107,7 +121,7 @@ export async function sendEnquiryNotification(enquiry: EnquiryData): Promise<boo
         </body>
         </html>
       `,
-            text: `
+      text: `
 New Enquiry Received - Institute of Innovative Minds
 
 Name: ${enquiry.name}
@@ -118,25 +132,25 @@ ${enquiry.message ? `Message: ${enquiry.message}` : ''}
 
 Please respond to this enquiry as soon as possible.
       `,
-        };
+    };
 
-        const info = await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
 
-        // Log in development mode
-        if (!process.env.SMTP_HOST) {
-            console.log('📧 Email Preview (Development Mode):');
-            console.log('To:', EMAIL_CONFIG.recipient);
-            console.log('Subject:', mailOptions.subject);
-            console.log('---');
-            console.log(mailOptions.text);
-            console.log('---');
-        } else {
-            console.log('✅ Email sent successfully:', info.messageId);
-        }
-
-        return true;
-    } catch (error) {
-        console.error('❌ Error sending email:', error);
-        return false;
+    // Log in development mode
+    if (!process.env.SMTP_HOST) {
+      console.log('📧 Email Preview (Development Mode):');
+      console.log('To:', EMAIL_CONFIG.recipient);
+      console.log('Subject:', mailOptions.subject);
+      console.log('---');
+      console.log(mailOptions.text);
+      console.log('---');
+    } else {
+      console.log('✅ Email sent successfully:', info.messageId);
     }
+
+    return true;
+  } catch (error) {
+    console.error('❌ Error sending email:', error);
+    return false;
+  }
 }

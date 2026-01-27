@@ -3,41 +3,75 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import slide1 from "@assets/stock_images/modern_professional__a4fbdcd8.jpg";
+import slideRemoteWork from "@assets/stock_images/remote_work_girl.png";
 import slide2 from "@assets/stock_images/online_learning_stud_8b64d313.jpg";
 import slide3 from "@assets/stock_images/young_entrepreneurs__0f08b7cc.jpg";
 import slide4 from "@assets/stock_images/digital_professional_a6e74f03.jpg";
+import slideInstitute from "@assets/stock_images/institute_building.png";
 
 const slides = [
   {
-    image: slide1,
+    image: slideInstitute,
+    span: "Virtual Campus",
+    title: "Institute of Innovative Minds",
+    highlightWord: "Innovative",
+    description: "Innovate Today, Lead Tomorrow",
+    cta: "Explore Programs",
+    target: "programs",
+    bgPosition: "right center",
+    bgSize: "cover"
+  },
+  {
+    image: slideRemoteWork,
+    span: "IIM Sri Lanka Virtual Campus",
     title: "Master Remote Work",
+    highlightWord: "Remote",
     description: "Learn the skills to work for global companies from anywhere in Sri Lanka.",
-    cta: "View Programs",
-    target: "programs"
+    cta: "Explore Programs",
+    target: "programs",
+    bgPosition: "right center",
+    bgSize: "cover"
   },
   {
     image: slide2,
+    span: "IIM Sri Lanka Virtual Campus",
     title: "Virtual Classrooms",
+    highlightWord: "Virtual",
     description: "Experience modern education with live sessions and practical portfolio work.",
-    cta: "How It Works",
-    target: "about"
+    cta: "Explore Programs",
+    target: "programs"
   },
   {
     image: slide3,
+    span: "IIM Sri Lanka Virtual Campus",
     title: "Empower Your Innovation",
+    highlightWord: "Empower",
     description: "From digital entrepreneurship to AI tools, build your business today.",
-    cta: "Start Now",
-    target: "contact"
+    cta: "Explore Programs",
+    target: "programs"
   },
   {
     image: slide4,
+    span: "IIM Sri Lanka Virtual Campus",
     title: "Join the Digital Economy",
+    highlightWord: "Digital",
     description: "Bridge the gap between education and modern professional work.",
-    cta: "Learn More",
-    target: "about"
+    cta: "Explore Programs",
+    target: "programs"
   }
 ];
+
+// Function to render title with highlighted word in primary color
+const renderTitle = (title: string, highlightWord: string) => {
+  if (!highlightWord) return title;
+
+  const parts = title.split(new RegExp(`(${highlightWord})`, 'gi'));
+  return parts.map((part, index) =>
+    part.toLowerCase() === highlightWord.toLowerCase()
+      ? <span key={index} className="text-primary">{part}</span>
+      : part
+  );
+};
 
 export function HeroSlider() {
   const [current, setCurrent] = useState(0);
@@ -45,7 +79,7 @@ export function HeroSlider() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
 
@@ -69,8 +103,12 @@ export function HeroSlider() {
         >
           {/* Background Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-[8s] scale-105"
-            style={{ backgroundImage: `url(${slides[current].image})` }}
+            className="absolute inset-0 transition-transform duration-[8s] scale-105"
+            style={{
+              backgroundImage: `url(${slides[current].image})`,
+              backgroundSize: slides[current].bgSize || 'cover',
+              backgroundPosition: slides[current].bgPosition || 'center'
+            }}
           />
 
           {/* Overlay - Brighter, more compact wash */}
@@ -85,21 +123,29 @@ export function HeroSlider() {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <span className="inline-block py-0.5 px-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-semibold mb-3 uppercase tracking-wider">
-                  IIM Sri Lanka Virtual Campus
+                  {slides[current].span}
                 </span>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold leading-[1.1] mb-4 text-foreground">
-                  {slides[current].title}
+                  {renderTitle(slides[current].title, slides[current].highlightWord)}
                 </h1>
                 <p className="text-lg text-muted-foreground mb-6 leading-snug">
                   {slides[current].description}
                 </p>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                   <Button
                     size="default"
                     className="bg-primary hover:bg-primary/90 text-white px-6 h-10 text-base shadow-md shadow-primary/20 rounded-full"
                     onClick={() => scrollTo(slides[current].target)}
                   >
                     {slides[current].cta}
+                  </Button>
+                  <Button
+                    size="default"
+                    variant="outline"
+                    className="border border-primary text-primary hover:bg-primary hover:text-white px-6 h-10 text-base shadow-sm rounded-full bg-transparent"
+                    onClick={() => scrollTo('contact')}
+                  >
+                    Enquire / Apply
                   </Button>
                 </div>
               </motion.div>

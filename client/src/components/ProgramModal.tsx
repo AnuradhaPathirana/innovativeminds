@@ -141,7 +141,7 @@ export function ProgramModal({ program, isOpen, onClose, onEnquire }: ProgramMod
                         <div className="p-6 -mt-4 bg-white rounded-t-2xl relative">
                             {/* Description */}
                             <div className="mb-6">
-                                <h3 className="text-sm font-semibold text-foreground mb-2">About This Program</h3>
+                                <h3 className="text-sm font-semibold text-foreground mb-2">Programme Description</h3>
                                 <p className="text-muted-foreground text-sm leading-relaxed">
                                     {program.description}
                                 </p>
@@ -167,6 +167,25 @@ export function ProgramModal({ program, isOpen, onClose, onEnquire }: ProgramMod
                                     ))}
                                 </ul>
                             </div>
+
+                            {/* For Whom Section - Only show if data exists */}
+                            {program.for_whom && program.for_whom.length > 0 && (
+                                <div className="mb-6">
+                                    <h3 className="text-sm font-semibold text-foreground mb-3">For Whom</h3>
+                                    <div className="p-4 bg-secondary/30 rounded-xl border border-border/40">
+                                        <div className="flex flex-wrap gap-2">
+                                            {program.for_whom.map((audience, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20"
+                                                >
+                                                    {audience}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
 
                             {/* Benefits */}
                             <div className="mb-8 p-4 bg-primary/5 rounded-xl border border-primary/10">

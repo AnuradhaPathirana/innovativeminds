@@ -51,6 +51,8 @@ CREATE TABLE programs (
     image VARCHAR(255) DEFAULT NULL,
     features JSON NOT NULL,
     duration VARCHAR(50),
+    delivery_mode ENUM('Online', 'Virtual', 'Online & Virtual') DEFAULT 'Online',
+    for_whom JSON DEFAULT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     display_order INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

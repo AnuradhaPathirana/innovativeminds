@@ -139,6 +139,8 @@ export default function Home() {
                   features={program.features}
                   icon={iconMap[program.icon] || <Laptop className="w-6 h-6" />}
                   image={program.image}
+                  duration={program.duration}
+                  deliveryMode={program.delivery_mode}
                   onSelect={() => openProgramModal(program)}
                 />
               ))
@@ -230,7 +232,7 @@ export default function Home() {
           <div>
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 leading-tight">Ready to Transform<span className="text-primary"> Your Career</span></h2>
             <p className="text-base text-muted-foreground mb-6">
-              Applications are now open for our next intake. Secure your spot today.
+              To receive the course schedule, fees, and intake dates, contact us using the details below.
             </p>
             <div className="flex flex-col gap-2">
               {[

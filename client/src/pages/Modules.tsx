@@ -54,6 +54,8 @@ interface ModuleFormData {
     image: string;
     features: string;
     duration: string;
+    delivery_mode: "Online" | "Virtual" | "Online & Virtual";
+    for_whom: string;
     display_order: number;
 }
 
@@ -64,6 +66,8 @@ const emptyForm: ModuleFormData = {
     image: "",
     features: "",
     duration: "",
+    delivery_mode: "Online",
+    for_whom: "",
     display_order: 0,
 };
 
@@ -117,6 +121,8 @@ export default function ModulesPage() {
             image: program.image || "",
             features: Array.isArray(program.features) ? program.features.join(", ") : "",
             duration: program.duration || "",
+            delivery_mode: program.delivery_mode || "Online",
+            for_whom: Array.isArray(program.for_whom) ? program.for_whom.join(", ") : "",
             display_order: program.display_order,
         });
         setSelectedFile(null);
@@ -182,6 +188,11 @@ export default function ModulesPage() {
                 .map(f => f.trim())
                 .filter(f => f.length > 0);
 
+            const forWhomArray = formData.for_whom
+                .split(",")
+                .map(f => f.trim())
+                .filter(f => f.length > 0);
+
             const data: CreateProgramInput = {
                 title: formData.title,
                 description: formData.description,
@@ -189,6 +200,8 @@ export default function ModulesPage() {
                 image: imageUrl || undefined,
                 features: featuresArray,
                 duration: formData.duration || undefined,
+                delivery_mode: formData.delivery_mode,
+                for_whom: forWhomArray.length > 0 ? forWhomArray : undefined,
                 display_order: formData.display_order,
             };
 
@@ -388,6 +401,20 @@ export default function ModulesPage() {
                         </div>
 
                         <div className="space-y-2">
+                            <label className="text-sm font-medium text-slate-200">Delivery Mode</label>
+                            <Select value={formData.delivery_mode} onValueChange={(v: "Online" | "Virtual" | "Online & Virtual") => setFormData({ ...formData, delivery_mode: v })}>
+                                <SelectTrigger className="bg-slate-900 border-slate-700 text-white">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent className="bg-slate-800 border-slate-700">
+                                    <SelectItem value="Online" className="text-white">Online</SelectItem>
+                                    <SelectItem value="Virtual" className="text-white">Virtual</SelectItem>
+                                    <SelectItem value="Online & Virtual" className="text-white">Online & Virtual</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="space-y-2">
                             <label className="text-sm font-medium text-slate-200">Features (comma separated)</label>
                             <Input
                                 value={formData.features}
@@ -395,6 +422,17 @@ export default function ModulesPage() {
                                 className="bg-slate-900 border-slate-700 text-white"
                                 placeholder="Feature 1, Feature 2, Feature 3"
                             />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-slate-200">For Whom (comma separated)</label>
+                            <Input
+                                value={formData.for_whom}
+                                onChange={(e) => setFormData({ ...formData, for_whom: e.target.value })}
+                                className="bg-slate-900 border-slate-700 text-white"
+                                placeholder="School Leavers, Undergraduates, Fresh Graduates, Career Switchers"
+                            />
+                            <p className="text-xs text-slate-500">Target audience for this program</p>
                         </div>
 
                         <div className="space-y-2">

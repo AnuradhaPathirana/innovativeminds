@@ -8,6 +8,8 @@ export interface Program {
     image: string | null;
     features: string[];
     duration: string | null;
+    delivery_mode: "Online" | "Virtual" | "Online & Virtual" | null;
+    for_whom: string[] | null;
     price: number | null;
     is_active: boolean;
     display_order: number;
@@ -22,6 +24,8 @@ export interface CreateProgramInput {
     image?: string;
     features: string[];
     duration?: string;
+    delivery_mode?: "Online" | "Virtual" | "Online & Virtual";
+    for_whom?: string[];
     price?: number;
     display_order?: number;
 }

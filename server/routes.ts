@@ -55,7 +55,8 @@ export async function registerRoutes(
       // Parse JSON features for each program
       const parsedPrograms = (programs as any[]).map(p => ({
         ...p,
-        features: typeof p.features === 'string' ? JSON.parse(p.features) : p.features
+        features: typeof p.features === 'string' ? JSON.parse(p.features) : p.features,
+        for_whom: typeof p.for_whom === 'string' ? JSON.parse(p.for_whom) : p.for_whom
       }));
       res.json(parsedPrograms);
     } catch (err) {
@@ -71,7 +72,8 @@ export async function registerRoutes(
 
       const parsedPrograms = (programs as any[]).map(p => ({
         ...p,
-        features: typeof p.features === 'string' ? JSON.parse(p.features) : p.features
+        features: typeof p.features === 'string' ? JSON.parse(p.features) : p.features,
+        for_whom: typeof p.for_whom === 'string' ? JSON.parse(p.for_whom) : p.for_whom
       }));
       res.json(parsedPrograms);
     } catch (err) {

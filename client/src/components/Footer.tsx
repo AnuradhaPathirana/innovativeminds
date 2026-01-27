@@ -151,7 +151,7 @@ export function Footer() {
                         {/* Social Media Icons */}
                         <div className="flex items-center gap-3 mt-6">
                             <a
-                                href="https://web.facebook.com/innovativeminds.lk/?_rdc=1&_rdr#"
+                                href="https://web.facebook.com/innovativeminds.edu/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-9 h-9 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-colors"

@@ -152,13 +152,15 @@ export const programQueries = {
         const image = data.image !== undefined ? data.image : null;
         const features = Array.isArray(data.features) ? JSON.stringify(data.features) : '[]';
         const duration = data.duration !== undefined ? data.duration : null;
+        const delivery_mode = data.delivery_mode !== undefined ? data.delivery_mode : 'Online';
+        const for_whom = Array.isArray(data.for_whom) ? JSON.stringify(data.for_whom) : null;
         const display_order = typeof data.display_order === 'number' ? data.display_order : 0;
 
-        console.log('[DEBUG] Processed values:', { title, description, icon, image, features, duration, display_order });
+        console.log('[DEBUG] Processed values:', { title, description, icon, image, features, duration, delivery_mode, for_whom, display_order });
 
         const [result] = await pool.execute(
-            'INSERT INTO programs (title, description, icon, image, features, duration, display_order) VALUES (?, ?, ?, ?, ?, ?, ?)',
-            [title, description, icon, image, features, duration, display_order]
+            'INSERT INTO programs (title, description, icon, image, features, duration, delivery_mode, for_whom, display_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [title, description, icon, image, features, duration, delivery_mode, for_whom, display_order]
         );
         return (result as any).insertId;
     },
@@ -172,13 +174,15 @@ export const programQueries = {
         const image = data.image !== undefined ? data.image : null;
         const features = Array.isArray(data.features) ? JSON.stringify(data.features) : '[]';
         const duration = data.duration !== undefined ? data.duration : null;
+        const delivery_mode = data.delivery_mode !== undefined ? data.delivery_mode : 'Online';
+        const for_whom = Array.isArray(data.for_whom) ? JSON.stringify(data.for_whom) : null;
         const display_order = typeof data.display_order === 'number' ? data.display_order : 0;
 
-        console.log('[DEBUG] Processed values:', { title, description, icon, image, features, duration, display_order, id });
+        console.log('[DEBUG] Processed values:', { title, description, icon, image, features, duration, delivery_mode, for_whom, display_order, id });
 
         await pool.execute(
-            'UPDATE programs SET title = ?, description = ?, icon = ?, image = ?, features = ?, duration = ?, display_order = ? WHERE id = ?',
-            [title, description, icon, image, features, duration, display_order, id]
+            'UPDATE programs SET title = ?, description = ?, icon = ?, image = ?, features = ?, duration = ?, delivery_mode = ?, for_whom = ?, display_order = ? WHERE id = ?',
+            [title, description, icon, image, features, duration, delivery_mode, for_whom, display_order, id]
         );
         return programQueries.getById(id);
     },
