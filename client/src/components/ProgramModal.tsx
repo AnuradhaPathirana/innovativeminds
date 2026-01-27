@@ -173,16 +173,9 @@ export function ProgramModal({ program, isOpen, onClose, onEnquire }: ProgramMod
                                 <div className="mb-6">
                                     <h3 className="text-sm font-semibold text-foreground mb-3">For Whom</h3>
                                     <div className="p-4 bg-secondary/30 rounded-xl border border-border/40">
-                                        <div className="flex flex-wrap gap-2">
-                                            {program.for_whom.map((audience, index) => (
-                                                <span
-                                                    key={index}
-                                                    className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20"
-                                                >
-                                                    {audience}
-                                                </span>
-                                            ))}
-                                        </div>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">
+                                            {program.for_whom.join(", ")}
+                                        </p>
                                     </div>
                                 </div>
                             )}

@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import slideRemoteWork from "@assets/stock_images/remote_work_girl.png";
 import slideVirtualClassroom from "@assets/stock_images/virtual_classroom_instructor.png";
-import slide3 from "@assets/stock_images/young_entrepreneurs__0f08b7cc.jpg";
+import slide3 from "@assets/stock_images/empower_innovation.png";
 import slideDigitalEconomy from "@assets/stock_images/digital_economy_handshake.png";
 import slideInstitute from "@assets/stock_images/institute_building.png";
 
@@ -50,7 +50,9 @@ const slides = [
     highlightWord: "Empower",
     description: "From digital entrepreneurship to AI tools, build your business today.",
     cta: "Explore Programs",
-    target: "programs"
+    target: "programs",
+    bgPosition: "center right",
+    bgSize: "cover"
   },
   {
     image: slideDigitalEconomy,
@@ -116,7 +118,7 @@ export function HeroSlider() {
           />
 
           {/* Overlay - Brighter, more compact wash */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/30 to-transparent" />
 
           {/* Content - More compact alignment */}
           <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-8">
