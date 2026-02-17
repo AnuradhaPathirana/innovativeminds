@@ -209,7 +209,7 @@ export function Footer() {
 
                         {/* Made with love */}
                         <div className="text-slate-500 text-sm flex items-center gap-1">
-                            Designed with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> in Sri Lanka
+                            Powered by Innovative Minds
                         </div>
                     </div>
                 </div>
