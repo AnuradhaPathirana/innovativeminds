@@ -3,7 +3,7 @@
 # https://www.innovativeminds.lk
 # =========================================
 
-# Allow all search engines
+# Allow all search enginess
 User-agent: *
 Allow: /
 
