@@ -3,8 +3,44 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import path from "path";
+import fs from "fs";
 
 const app = express();
+
+// =========================================
+// SEO: Serve robots.txt and sitemap.xml
+// =========================================
+const publicDir = path.resolve(import.meta.dirname, "..", "client", "public");
+
+app.get("/robots.txt", (_req, res) => {
+  const robotsPath = path.join(publicDir, "robots.txt");
+  if (fs.existsSync(robotsPath)) {
+    res.type("text/plain").sendFile(robotsPath);
+  } else {
+    res.type("text/plain").send("User-agent: *\nAllow: /\n");
+  }
+});
+
+app.get("/sitemap.xml", (_req, res) => {
+  const sitemapPath = path.join(publicDir, "sitemap.xml");
+  if (fs.existsSync(sitemapPath)) {
+    res.type("application/xml").sendFile(sitemapPath);
+  } else {
+    res.status(404).send("Sitemap not found");
+  }
+});
+
+// =========================================
+// SEO: Security & Performance Headers
+// =========================================
+app.use((_req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  next();
+});
 app.set("trust proxy", 1);
 const httpServer = createServer(app);
 

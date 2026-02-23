@@ -1,0 +1,57 @@
+# =========================================
+# Innovative Minds - Robots.txt
+# https://www.innovativeminds.lk
+# =========================================
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /uploads/
+
+# Disallow development/build artifacts
+Disallow: /assets/*.js.map
+Disallow: /assets/*.css.map
+
+# Allow CSS and JS for rendering
+Allow: /assets/*.js
+Allow: /assets/*.css
+Allow: /assets/*.png
+Allow: /assets/*.jpg
+Allow: /assets/*.jpeg
+Allow: /assets/*.webp
+Allow: /assets/*.svg
+
+# =========================================
+# Google-specific directives
+# =========================================
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /uploads/
+
+# =========================================
+# Bing-specific directives
+# =========================================
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Crawl-delay for less important bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://www.innovativeminds.lk/sitemap.xml
