@@ -121,7 +121,7 @@ export function Footer() {
                                     className="text-slate-400 hover:text-primary transition-colors text-sm flex items-center gap-2"
                                 >
                                     <Mail className="w-4 h-4 text-primary" />
-                                    Info@innovativeminds.lk
+                                    info@innovativeminds.lk
                                 </a>
                             </li>
                             <li>
