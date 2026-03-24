@@ -5,13 +5,18 @@ import { serveStatic } from "./static";
 import { createServer } from "http";
 import path from "path";
 import fs from "fs";
+import { fileURLToPath } from "url";
 
 const app = express();
 
 // =========================================
 // SEO: Serve robots.txt and sitemap.xml
 // =========================================
-const publicDir = path.resolve(import.meta.dirname, "..", "client", "public");
+// Use __dirname for CJS (production build) or import.meta for ESM (dev mode)
+const __currentDir = typeof __dirname !== "undefined"
+  ? __dirname
+  : path.dirname(fileURLToPath(import.meta.url));
+const publicDir = path.resolve(__currentDir, "..", "client", "public");
 
 app.get("/robots.txt", (_req, res) => {
   const robotsPath = path.join(publicDir, "robots.txt");
